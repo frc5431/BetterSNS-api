@@ -1,0 +1,69 @@
+{
+    "pregame": {
+        "name": "Titan Robotics",
+        "number": 5431,
+        "match": 10,
+        "preload": true,
+        "human": true,
+        "noshow": false
+    },
+    "auton": {
+        "floor": {
+            "attempted": 0,
+            "failed": 0
+        },
+        "low": {
+            "attempted": 1,
+            "failed": 0
+        },
+        "medium": {
+            "attempted": 2,
+            "failed": 0
+        },
+        "failed": {
+            "attempted": 3,
+            "failed": 1
+        },
+        "markers": [
+            {
+                "x": 1,
+                "y": 3
+            },
+            {
+                "x": 3,
+                "y": 2
+            }
+        ]
+    },
+    "teleop": {
+        "floor": {
+            "attempted": 0,
+            "failed": 0
+        },
+        "low": {
+            "attempted": 1,
+            "failed": 0
+        },
+        "medium": {
+            "attempted": 2,
+            "failed": 0
+        },
+        "failed": {
+            "attempted": 3,
+            "failed": 1
+        },
+        "markers": [
+            {
+                "x": 1,
+                "y": 3
+            },
+            {
+                "x": 3,
+                "y": 2
+            }
+        ]
+    },
+    "postgame": {
+        "rating": 4
+    }
+}
