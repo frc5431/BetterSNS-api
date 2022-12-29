@@ -1,5 +1,5 @@
 /**
- * Pregame.js
+ * Teleop.js
  *
  * @description :: A model definition represents a database table/collection.
  * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
@@ -12,34 +12,26 @@ module.exports = {
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
-
-    name: {
-      type: "string",
+    markers: {
+      type: "json",
     },
-    teamid: {
-      type: "number",
-    },
-    id: {
-      type: "string",
-      columnName: '_id',
-    },
-    match: {
-      type: "number",
-    },
-    preload: {
+    moved: {
       type: "boolean",
     },
-    human: {
-      type: "boolean",
+    start_position: {
+      type: "json",
     },
-    noshow: {
-      type: "boolean",
+    end_position: {
+      type: "json",
     },
-    date: {
-      type: "number",
+    extra_goal_progress: {
+      type: "json",
     },
     author: {
       type: "string",
+    },
+    form_id: {
+      type: "string"
     }
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗

@@ -1,57 +1,41 @@
 /**
- * Pregame.js
+ * Postmatch.js
  *
  * @description :: A model definition represents a database table/collection.
  * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
  */
 
 module.exports = {
-
   attributes: {
-
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
 
-    name: {
+    Notes: {
       type: "string",
     },
-    teamid: {
+    GeneralRating: {
       type: "number",
     },
-    id: {
+    Teamwork: {
+      type: "number",
+    },
+    Defense: {
+      type: "number",
+    },
+    Offense: {
+      type: "number",
+    },
+    form_id: {
       type: "string",
-      columnName: '_id',
     },
-    match: {
-      type: "number",
-    },
-    preload: {
-      type: "boolean",
-    },
-    human: {
-      type: "boolean",
-    },
-    noshow: {
-      type: "boolean",
-    },
-    date: {
-      type: "number",
-    },
-    author: {
-      type: "string",
-    }
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
     //  ╚═╝╩ ╩╚═╝╚═╝═╩╝╚═╝
 
-
     //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
-
   },
-
 };
-

@@ -1,5 +1,5 @@
 /**
- * Pregame.js
+ * Auton.js
  *
  * @description :: A model definition represents a database table/collection.
  * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
@@ -12,34 +12,26 @@ module.exports = {
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
-
-    name: {
-      type: "string",
+    markers: {
+      type: "json",
     },
-    teamid: {
-      type: "number",
-    },
-    id: {
-      type: "string",
-      columnName: '_id',
-    },
-    match: {
-      type: "number",
-    },
-    preload: {
+    moved: {
       type: "boolean",
     },
-    human: {
-      type: "boolean",
+    startpos: {
+      type: "json",
     },
-    noshow: {
-      type: "boolean",
-    },
-    date: {
-      type: "number",
+    endpos: {
+      type: "json",
     },
     author: {
       type: "string",
+    },
+    date: {
+      type: "number"
+    },
+    form_id: {
+      type: "string"
     }
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗

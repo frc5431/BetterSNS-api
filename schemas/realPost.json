@@ -1,0 +1,58 @@
+{
+    "data": {
+      "prematch": {
+        "name": "Rudy",
+        "teamid": 5431,
+        "match": 2,
+        "preload": true,
+        "human": false,
+        "noshow": false
+      },
+      "auton": {
+        "markers": [
+          {
+            "x": 0,
+            "y": 0,
+            "success": true,
+            "difficulty": 0
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "success": true,
+            "difficulty": 0
+          },
+          {
+            "x": 42,
+            "y": 43,
+            "success": true,
+            "difficulty": 0
+          }
+        ]
+      }
+      ,
+      "teleop": {
+        "markers": [
+          {
+            "x": 0,
+            "y": 0,
+            "success": true,
+            "difficulty": 0
+          },
+          {
+            "x": 1,
+            "y": 5,
+            "success": true,
+            "difficulty": 0
+          },
+          {
+            "x": 2,
+            "y": 12,
+            "success": true,
+            "difficulty": 0
+          }
+        ],
+        
+      }
+    }
+  }

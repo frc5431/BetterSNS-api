@@ -21,7 +21,7 @@ module.exports.routes = {
 
   '/': { view: 'pages/homepage' },
   'GET /api/v1/pregame' : { action: 'pregame/get' },
-  'POST /api/v1/pregame' : { action: 'pregame/post' },
+  'POST /api/v1/form' : { action: 'form/post' },
 
 
   /***************************************************************************

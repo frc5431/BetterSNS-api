@@ -8,30 +8,18 @@
         "noshow": false
     },
     "auton": {
-        "floor": {
-            "attempted": 0,
-            "failed": 0
-        },
-        "low": {
-            "attempted": 1,
-            "failed": 0
-        },
-        "medium": {
-            "attempted": 2,
-            "failed": 0
-        },
-        "failed": {
-            "attempted": 3,
-            "failed": 1
-        },
         "markers": [
             {
                 "x": 1,
-                "y": 3
+                "y": 3,
+                "success": true,
+                "difficulty": 0
             },
             {
                 "x": 3,
-                "y": 2
+                "y": 2,
+                "success": false,
+                "difficulty": 1
             }
         ]
     },
