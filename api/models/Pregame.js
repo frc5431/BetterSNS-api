@@ -43,6 +43,9 @@ module.exports = {
     },
     alliance: {
       type: 'boolean'
+    },
+    preload_type: {
+      type: 'string'
     }
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
