@@ -24,23 +24,6 @@ module.exports = {
 
 
   fn: async function (inputs) {
-    /*
-      markers: {
-        type: "json",
-      },
-      moved: {
-        type: "boolean",
-      },
-      startpos: {
-        type: "json",
-      },
-      endpos: {
-        type: "json",
-      },
-      author: {
-        type: "string",
-      }
-    */
     if(!inputs.auton.hasOwnProperty("markers")) {
       return "no markers";
     }

@@ -40,6 +40,9 @@ module.exports = {
     },
     author: {
       type: "string",
+    },
+    alliance: {
+      type: 'boolean'
     }
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
