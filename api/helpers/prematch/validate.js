@@ -49,6 +49,9 @@ module.exports = {
     if (!inputs.prematch.hasOwnProperty("alliance")) {
       return "alliance";
     }
+    if (!inputs.prematch.hasOwnProperty("preload_type")) {
+      return "preload_type";
+    }
     return true;
   }
 
