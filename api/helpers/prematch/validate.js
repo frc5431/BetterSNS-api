@@ -40,9 +40,6 @@ module.exports = {
     if (!inputs.prematch.hasOwnProperty("preload")) {
       return "preload";
     }
-    if (!inputs.prematch.hasOwnProperty("human")) {
-      return "human";
-    }
     if (!inputs.prematch.hasOwnProperty("noshow")) {
       return "noshow";
     }

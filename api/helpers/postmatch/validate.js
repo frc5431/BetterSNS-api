@@ -17,7 +17,7 @@ module.exports = {
 
   fn: async function (inputs) {
     sails.log(inputs.postmatch);
-    if (!inputs.postmatch.hasOwnProperty("Notes")) {
+    if (!inputs.postmatch.hasOwnProperty("notes")) {
       return "no notes";
     }
     if (!inputs.postmatch.hasOwnProperty("GeneralRating")) {

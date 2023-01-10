@@ -26,8 +26,7 @@ module.exports = {
 
 
   fn: async function (inputs, exits) {
-
-    let formdata = JSON.parse(inputs.data);
+    let formdata = inputs.data;
 
     if(!formdata.hasOwnProperty("prematch")) {
       return exits.fail({message: "Prematch not found"});
