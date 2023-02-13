@@ -28,9 +28,6 @@ module.exports = {
     intake_containable: {
       type: "string"
     },
-    color: {
-      type: "string"
-    },
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗

@@ -18,14 +18,11 @@ module.exports = {
     moved: {
       type: "boolean",
     },
-    start_position: {
-      type: "json",
-    },
-    end_position: {
-      type: "json",
-    },
     extra_goal_progress: {
       type: "json",
+    },
+    attempted_collaboration: {
+      type: "boolean"
     },
     author: {
       type: "string",

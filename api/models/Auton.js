@@ -18,12 +18,6 @@ module.exports = {
     moved: {
       type: "boolean",
     },
-    startpos: {
-      type: "json",
-    },
-    endpos: {
-      type: "json",
-    },
     author: {
       type: "string",
     },
@@ -32,7 +26,16 @@ module.exports = {
     },
     form_id: {
       type: "string"
-    }
+    },
+    marker: {
+      type: "boolean"
+    },
+    attempted_collaboration: {
+      type: "boolean"
+    },
+    extra_goal_progress: {
+      type: "json",
+    },
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
