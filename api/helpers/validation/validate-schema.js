@@ -8,7 +8,7 @@ module.exports = {
 
 
   inputs: {
-    schema: {
+    names: {
       type: 'ref'
     },
     data: {
@@ -27,29 +27,12 @@ module.exports = {
 
 
   fn: async function (inputs) {
-    //a schema is an object with a list of fields
-    //each field has a type and a name
-    //each field can have a list of subfields wich act like fields
-
-    const testfield = (field, data) => {
-      if(!data.hasOwnProperty(field.name)) {
-        return false;
-      }
-      if(data[field.name] === undefined) {
-        return false;
-      }
-      if(field.type !== typeof(data[field.name])) {
-        return false;
-      }
-      return true;
-    }
-    for(let field of inputs.schema) {
-      let result = testfield(field, inputs.data);
-      if(result !== undefined) {
-        return result;
+    for(const name of names) {
+      if(!data.hasOwnProperty(names)) {
+        return name;
       }
     }
-      
+    return true; 
   }
 
 

@@ -79,6 +79,18 @@ module.exports = {
     let postmatch = formdata.postmatch;
     postmatch.date = Date.now();
     sails.log(postmatch)
+
+    if(!formdata.hasOwnProperty("robot_attributes")) {
+      return exits.fail({message: "Robot Attributes not found"});
+    }
+    let robot_attributes_validate = await sails.helpers.robot_attributes.validate.with({robot_attributes: formdata.robot_attributes});
+    if(robot_attributes_validate !== true) {
+      return exits.fail({message: "Robot Attributes was unable to validate because " + robot_attributes_validate});
+    }
+
+    let robot_attributes = formdata.robot_attributes;
+    robot_attributes.date = Date.now();
+    sails.log(robot_attributes)
     
 
     //create new Pregame
@@ -97,6 +109,9 @@ module.exports = {
     //create new Postmatch
     let new_postmatch = await Postmatch.create(postmatch).fetch();
     sails.log(new_postmatch);
+    //create new RA
+    let new_robot_attributes = await RobotAttributes.create(robot_attributes).fetch();
+    sails.log(robot_attributes);
     // All done.
     return exits.succeed({message: "Succeed with no errors"});
 

@@ -28,9 +28,6 @@ module.exports = {
     if (!inputs.prematch.hasOwnProperty("author")) {
       return "author";
     }
-    if (!inputs.prematch.hasOwnProperty("name")) {
-      return "name";
-    }
     if (!inputs.prematch.hasOwnProperty("teamid")) {
       return "teamid";
     }

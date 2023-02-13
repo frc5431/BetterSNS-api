@@ -1,54 +1,47 @@
 /**
- * Postmatch.js
+ * RobotAttributes.js
  *
  * @description :: A model definition represents a database table/collection.
  * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
  */
 
 module.exports = {
+
   attributes: {
+
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
 
-    Notes: {
-      type: "string",
+    arm_design: {
+      type: "string"
     },
-    GeneralRating: {
-      type: "number",
+    drive_style: {
+      type: "string"
     },
-    Teamwork: {
-      type: "number",
-    },
-    Defense: {
-      type: "number",
-    },
-    Offense: {
-      type: "number",
-    },
-    form_id: {
-      type: "string",
-    },
-    points: {
+    agility: {
       type: "number"
     },
-    penalties: {
+    speed: {
       type: "number"
     },
-    final_score: {
-      type: "number"
+    intake_containable: {
+      type: "string"
     },
-    rank_points: {
-      type: "number"
+    color: {
+      type: "string"
     },
-
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
     //  ╚═╝╩ ╩╚═╝╚═╝═╩╝╚═╝
 
+
     //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
+
   },
+
 };
+
