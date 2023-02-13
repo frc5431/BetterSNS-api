@@ -38,41 +38,53 @@ module.exports = {
     prematch.date = Date.now();
     sails.log(prematch)
 
-    if(!inputs.data.hasOwnProperty("auton")) {
-      return exits.fail({message: "Auton not found"});
-    }
-    let auton_validate = await sails.helpers.auton.validate.with({auton: inputs.data.auton});
-    if(auton_validate !== true) {
-      return exits.fail({message: "Auton was unable to validate because " + auton_validate});
+    let auton = {};
+    let teleop = {};
+    let postmatch = {};
+
+    if(!prematch.noshow) {
+      if(!inputs.data.hasOwnProperty("auton")) {
+        return exits.fail({message: "Auton not found"});
+      }
+      let auton_validate = await sails.helpers.auton.validate.with({auton: inputs.data.auton});
+      if(auton_validate !== true) {
+        return exits.fail({message: "Auton was unable to validate because " + auton_validate});
+      }
+  
+      auton = inputs.data.auton;
+      auton.date = Date.now();
+      auton.startpos = auton.markers[0]
+      auton.endpos = auton.markers[auton.markers.length - 1]
+      sails.log(auton)
+  
+      if(!inputs.data.hasOwnProperty("teleop")) {
+        return exits.fail({message: "Teleop not found"});
+      }
+      let teleop_validate = await sails.helpers.auton.validate.with({auton: inputs.data.teleop});
+      if(teleop_validate !== true) {
+        return exits.fail({message: "Teleop was unable to validate because " + teleop_validate});
+      }
+  
+      teleop = inputs.data.teleop;
+      teleop.date = Date.now();
+      teleop.startpos = teleop.markers[0]
+      teleop.endpos = teleop.markers[teleop.markers.length - 1]
+      sails.log(teleop)
+
+      if(!inputs.data.hasOwnProperty("postmatch")) {
+        return exits.fail({message: "Postmatch not found"});
+      }
+      let postmatch_validate = await sails.helpers.postmatch.validate.with({postmatch: inputs.data.postmatch});
+      if(postmatch_validate !== true) {
+        return exits.fail({message: "Postmatch was unable to validate because " + postmatch_validate});
+      }
+
+      postmatch = inputs.data.postmatch;
+      postmatch.date = Date.now();
+      sails.log(postmatch)
     }
 
-    auton = inputs.data.auton;
-    auton.date = Date.now();
-    auton.startpos = auton.markers[0]
-    auton.endpos = auton.markers[auton.markers.length - 1]
-    sails.log(auton)
-
-    if(!inputs.data.hasOwnProperty("teleop")) {
-      return exits.fail({message: "Teleop not found"});
-    }
-    let teleop_validate = await sails.helpers.auton.validate.with({auton: inputs.data.teleop});
-    if(teleop_validate !== true) {
-      return exits.fail({message: "Teleop was unable to validate because " + teleop_validate});
-    }
-
-    teleop = inputs.data.teleop;
-    teleop.date = Date.now();
-    teleop.startpos = teleop.markers[0]
-    teleop.endpos = teleop.markers[teleop.markers.length - 1]
-    sails.log(teleop)
-
-    if(!inputs.data.hasOwnProperty("postmatch")) {
-      return exits.fail({message: "Postmatch not found"});
-    }
-    let postmatch_validate = await sails.helpers.postmatch.validate.with({postmatch: inputs.data.postmatch});
-    if(postmatch_validate !== true) {
-      return exits.fail({message: "Postmatch was unable to validate because " + postmatch_validate});
-    }
+    
 
     //create new Pregame
     let new_pregame = await Pregame.create(prematch).fetch();
@@ -116,8 +128,6 @@ module.exports = {
       destroyAll();
       return exits.fail({message: "Postmatch was unable to validate"});
     }
-
-
 
     // All done.
     return exits.succeed({message: "Succeed with no errors"});
