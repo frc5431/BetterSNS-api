@@ -24,14 +24,13 @@ module.exports = {
 
 
   fn: async function (inputs) {
-    return await sails.helpers.validation.validate_schema.with({
+    return await sails.helpers.validation.validateSchema.with({
       names: [
         "arm_design",
         "drive_style",
         "agility",
         "speed",
-        "intake_containable",
-        "color",
+        "intake_containables",
       ],
       data: inputs.robot_attributes
     })

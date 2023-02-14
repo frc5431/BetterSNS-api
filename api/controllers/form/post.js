@@ -83,7 +83,7 @@ module.exports = {
     if(!formdata.hasOwnProperty("robot_attributes")) {
       return exits.fail({message: "Robot Attributes not found"});
     }
-    let robot_attributes_validate = await sails.helpers.robot_attributes.validate.with({robot_attributes: formdata.robot_attributes});
+    let robot_attributes_validate = await sails.helpers.robotAttributes.validate.with({robot_attributes: formdata.robot_attributes});
     if(robot_attributes_validate !== true) {
       return exits.fail({message: "Robot Attributes was unable to validate because " + robot_attributes_validate});
     }

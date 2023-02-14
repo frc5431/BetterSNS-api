@@ -25,7 +25,7 @@ module.exports = {
     speed: {
       type: "number"
     },
-    intake_containable: {
+    intake_containables: {
       type: "string"
     },
 

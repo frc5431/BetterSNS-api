@@ -31,11 +31,11 @@ module.exports = {
     // Get all of round number.
     let allOfRoundNumber = [];
     
-    const forms = Pregame.find({where:{date: inputs.date, match: inputs.round_number}})
+    const forms = await Pregame.find({where:{date: inputs.date, match: inputs.round_number}})
 
     for(const form of forms) {
-      const auton = Auton.find({where:{form_id: form.id}})
-      const teleop = Teleop.find({where:{form_id: form.id}})
+      const auton = await Auton.find({where:{form_id: form.id}})
+      const teleop = await Teleop.find({where:{form_id: form.id}})
 
       allOfRoundNumber.push({
         form: form,

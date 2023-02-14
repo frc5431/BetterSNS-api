@@ -27,8 +27,9 @@ module.exports = {
 
 
   fn: async function (inputs) {
-    for(const name of names) {
-      if(!data.hasOwnProperty(names)) {
+    console.log(inputs.data)
+    for(const name of inputs.names) {
+      if(!inputs.data.hasOwnProperty(name)) {
         return name;
       }
     }
