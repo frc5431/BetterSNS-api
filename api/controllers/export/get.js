@@ -51,7 +51,8 @@ module.exports = {
       "docking": [],
       "tried community": [],
       "tried activation": [],
-      "activation bonus": []
+      "activation bonus": [],
+      "startingPos": []
     }
 
     const pregames = await Pregame.find({where:{date: {">": new Date(new Date().getFullYear(), 0, 1).valueOf()}}})
@@ -111,6 +112,7 @@ module.exports = {
       blueprint.preload.push(pregames[i].preload)
       blueprint["rank points"].push(postmatch[i].rank_points + "/5")
       blueprint.response.push(postmatch[i].Offense + "/5")
+      blueprint.startingPos.push(pregames[i].startingPos)
       //blueprint["rows scored"].push(teleops.markers && autons.markers)
       blueprint["team number"].push(pregames[i].teamid)
       blueprint.timestamp.push(pregames[i].date)

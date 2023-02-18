@@ -34,6 +34,9 @@ module.exports = {
     if (!inputs.prematch.hasOwnProperty("match")) {
       return "match";
     }
+    if (!inputs.prematch.hasOwnProperty("startingPos")) {
+      return "startingPos";
+    }
     if (!inputs.prematch.hasOwnProperty("preload")) {
       return "preload";
     }

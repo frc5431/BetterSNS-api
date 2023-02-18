@@ -43,6 +43,9 @@ module.exports = {
     },
     preload_type: {
       type: 'string'
+    },
+    startingPos: {
+      type: 'string'
     }
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗

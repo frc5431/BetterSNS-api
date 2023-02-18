@@ -47,9 +47,13 @@ module.exports = {
     if(auton_validate !== true) {
       return exits.fail({message: "Auton was unable to validate because " + auton_validate});
     }
-
+    let date = new Date();
+    date.setHours(0);
+    date.setMinutes(0);
+    date.setSeconds(0);
+    date.setMilliseconds(0);
     let auton = formdata.auton;
-    auton.date = Date.now();
+    auton.date = date.valueOf();
     auton.startpos = auton.markers[0]
     auton.endpos = auton.markers[auton.markers.length - 1]
     sails.log(auton)
