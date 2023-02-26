@@ -43,7 +43,7 @@ module.exports = {
           combinedField[marker].positive = currentField.positive;
           combinedField[marker].type = currentField.type;
         }
-        // 2023 specific code to filter out bottom nodes
+        // 2023 specific code to filter out anything but floor nodes
         if(combinedField[marker].y == 2) {
           if(combinedField[marker].type != currentField[marker].type && currentField[marker].type !== null) {
             combinedField[marker].type = currentField[marker].type;
