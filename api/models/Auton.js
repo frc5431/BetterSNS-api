@@ -44,8 +44,7 @@ module.exports = {
       allowNull: true
     },
     extra_goal_progress: {
-      type: "json",
-      allowNull: true
+      type: "json"
     },
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
