@@ -33,7 +33,7 @@ module.exports = {
         "intake_containables",
       ],
       data: inputs.robot_attributes
-    })
+    }) || inputs.robot_attributes.skipped === true;
   }
 
 

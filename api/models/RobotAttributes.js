@@ -28,6 +28,9 @@ module.exports = {
     intake_containables: {
       type: "string"
     },
+    skipped: {
+      type: "boolean"
+    }
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
