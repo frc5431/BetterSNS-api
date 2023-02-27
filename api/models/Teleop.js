@@ -14,21 +14,27 @@ module.exports = {
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
     markers: {
       type: "json",
+      allowNull: true
     },
     moved: {
       type: "boolean",
+      allowNull: true
     },
     extra_goal_progress: {
       type: "json",
+      allowNull: true
     },
     attempted_collaboration: {
-      type: "boolean"
+      type: "boolean",
+      allowNull: true
     },
     author: {
       type: "string",
+      allowNull: true
     },
     form_id: {
-      type: "string"
+      type: "string",
+      allowNull: true
     }
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗

@@ -31,6 +31,7 @@ module.exports = {
     },
     noshow: {
       type: "boolean",
+      allowNull: true
     },
     date: {
       type: "number",

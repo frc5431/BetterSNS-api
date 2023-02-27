@@ -14,22 +14,28 @@ module.exports = {
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
 
     arm_design: {
-      type: "string"
+      type: "string",
+      allowNull: true,
     },
     drive_style: {
-      type: "string"
+      type: "string",
+      allowNull: true,
     },
     agility: {
-      type: "number"
+      type: "number",
+      allowNull: true,
     },
     speed: {
-      type: "number"
+      type: "number",
+      allowNull: true,
     },
     intake_containables: {
-      type: "string"
+      type: "string",
+      allowNull: true
     },
     skipped: {
-      type: "boolean"
+      type: "boolean",
+      allowNull: true
     }
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
