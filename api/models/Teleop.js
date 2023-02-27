@@ -13,8 +13,7 @@ module.exports = {
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
     markers: {
-      type: "json",
-      allowNull: true
+      type: "json"
     },
     moved: {
       type: "boolean",
