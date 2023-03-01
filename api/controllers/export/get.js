@@ -58,7 +58,7 @@ module.exports = {
     const pregames = await Pregame.find({where:{date: {">": new Date(new Date().getFullYear(), 0, 1).valueOf()}}})
     const autons = await Auton.find({where:{date: {">": new Date(new Date().getFullYear(), 0, 1).valueOf()}}})
     const teleops = await Teleop.find({where:{date: {">": new Date(new Date().getFullYear(), 0, 1).valueOf()}}})
-    const postmatch = await Postmatch.find({where:{date: {">": new Date(new Date().getFullYear(), 0, 1).valueOf()}}})
+    const postmatches = await Postmatch.find({where:{date: {">": new Date(new Date().getFullYear(), 0, 1).valueOf()}}})
     const robot_attributes = await RobotAttributes.find({where:{date: {">": new Date(new Date().getFullYear(), 0, 1).valueOf()}}})
 
     const cachedRounds = {
@@ -69,17 +69,25 @@ module.exports = {
 
 
     for(let i = 0; i < pregames.length; i++) {
-      blueprint.author.push(pregames[i].author)
-      blueprint.carryables.push(robot_attributes[i].intake_containables)
-      blueprint["charged (a)"].push(autons[i].extra_goal_progress)
-      blueprint["charged (t)"].push(teleops[i].extra_goal_progress)
+      const pregame = pregame
+      const auton = autons.find(element => element.form_id === pregames.id)
+      const teleop = teleops.find(element => element.form_id === pregames.id)
+      const postgame = postmatches.find(element => element.form_id === pregames.id)
+      const robot_attribute = robot_attributes.find(element => element.form_id === pregames.id)
+
+
+
+      blueprint.author.push(pregame.author)
+      blueprint.carryables.push(robot_attribute.intake_containables)
+      blueprint["charged (a)"].push(auton.extra_goal_progress)
+      blueprint["charged (t)"].push(teleop.extra_goal_progress)
       let cones = 0;
       let cubes = 0;
-      for(let j = 0; j < autons[i].markers.length; j++) {
-        if(autons[i].markers[j].type == "cone" && autons[i].markers[j].positive == true) {
+      for(let j = 0; j < auton.markers.length; j++) {
+        if(auton.markers[j].type == "cone" && auton.markers[j].positive == true) {
           cones++;
         }
-        if(autons[i].markers[j].types == "cube" && autons[i].markers[j].positive == true){
+        if(auton.markers[j].types == "cube" && auton.markers[j].positive == true){
           cubes++
         }
       }
@@ -87,45 +95,45 @@ module.exports = {
       blueprint["cubes (a)"].push(cubes);
       cubes = 0
       cones = 0
-      for(let j = 0; j < teleops[i].markers.length; j++) {
-        if(teleops[i].markers[j].type == "cone" && teleops[i].markers[j].positive == true) {
+      for(let j = 0; j < teleop.markers.length; j++) {
+        if(teleop.markers[j].type == "cone" && teleop.markers[j].positive == true) {
           cones++;
         }
-        if(teleops[i].markers[j].types == "cube" && teleops[i].markers[j].positive == true){
+        if(teleop.markers[j].types == "cube" && teleop.markers[j].positive == true){
           cubes++
         }
       }
       blueprint["cones (t)"].push(cones)
       blueprint["cubes (t)"].push(cubes)
-      blueprint.coop.push(teleops[i].attempted_collaboration || autons[i].attempted_collaboration)
-      blueprint.defense.push(postmatch[i].Defense)
-      blueprint.docking.push((teleops[i].extra_goal_progress || autons[i].extra_goal_progress) >= 1 ? 'yes' : 'no')
-      blueprint["drive train"].push(robot_attributes[i].drive_style)
-      blueprint["final score"].push(postmatch[i].final_score)
-      blueprint["left community"].push(autons[i].left_community || false)
-      blueprint.manipulator.push(robot_attributes[i].arm_design)
-      blueprint["match number"].push(pregames[i].match)
-      blueprint.moved.push(autons[i].moved)
-      console.log(postmatch[i])
-      blueprint.penalties.push(postmatch[i].penalties)
-      blueprint.points.push(postmatch[i].points)
-      blueprint.preload.push(pregames[i].preload)
-      blueprint["rank points"].push(postmatch[i].rank_points + "/5")
-      blueprint.response.push(postmatch[i].Offense + "/5")
-      blueprint.startingPos.push(pregames[i].startingPos)
+      blueprint.coop.push(teleop.attempted_collaboration || auton.attempted_collaboration)
+      blueprint.defense.push(postgame.Defense)
+      blueprint.docking.push((teleop.extra_goal_progress || auton.extra_goal_progress) >= 1 ? 'yes' : 'no')
+      blueprint["drive train"].push(robot_attribute.drive_style)
+      blueprint["final score"].push(postgame.final_score)
+      blueprint["left community"].push(auton.left_community || false)
+      blueprint.manipulator.push(robot_attribute.arm_design)
+      blueprint["match number"].push(pregame.match)
+      blueprint.moved.push(auton.moved)
+      console.log(postgame)
+      blueprint.penalties.push(postgame.penalties)
+      blueprint.points.push(postgame.points)
+      blueprint.preload.push(pregame.preload)
+      blueprint["rank points"].push(postgame.rank_points + "/5")
+      blueprint.response.push(postgame.Offense + "/5")
+      blueprint.startingPos.push(pregame.startingPos)
       //blueprint["rows scored"].push(teleops.markers && autons.markers)
-      blueprint["team number"].push(pregames[i].teamid)
-      blueprint.timestamp.push(pregames[i].date)
+      blueprint["team number"].push(pregame.teamid)
+      blueprint.timestamp.push(pregame.date)
 
-      if(cachedRounds.hasOwnProperty(pregames[i].match)) {
-        cachedRounds[pregames[i].match] = await sails.helpers.rounds.getAllOfRoundNumber.with({
-          round_number: pregames[i].match,
-          date: pregames[i].date
+      if(cachedRounds.hasOwnProperty(pregame.match)) {
+        cachedRounds[pregame.match] = await sails.helpers.rounds.getAllOfRoundNumber.with({
+          round_number: pregame.match,
+          date: pregame.date
         })
       }
       let activationBonus = 0;
       
-      for(const cRound in cachedRounds[pregames[i].match]) {
+      for(const cRound in cachedRounds[pregame.match]) {
         let ag = cRound.auton.extra_goal_progress;
         let tg = cRound.teleop.extra_goal_progress;
         activationBonus += ag == 1 ? 8 : ag == 2 ? 12 : 0
@@ -135,7 +143,7 @@ module.exports = {
       blueprint["tried activation"].push(activationBonus >= 1)
       blueprint["activation bonus"].push(activationBonus >= 26)
 
-      blueprint["tried community"].push(teleops[i].attempted_collaboration || autons[i].attempted_collaboration)
+      blueprint["tried community"].push(teleop.attempted_collaboration || auton.attempted_collaboration)
     }
     let csv = "";
     for (const [key, value] of Object.entries(blueprint)) {
