@@ -61,9 +61,10 @@ module.exports = {
     const postmatches = await Postmatch.find({where:{date: {">": new Date(new Date().getFullYear(), 0, 1).valueOf()}}})
     const robot_attributes = await RobotAttributes.find({where:{date: {">": new Date(new Date().getFullYear(), 0, 1).valueOf()}}})
 
-    const cachedRounds = {
-      
-    }
+    
+  if (reqList.query.raw){
+    return exits.success(JSON.stringify(({preagmes, autons, teleops, postmatches, robot_attributes})))
+  }
 
     console.log(pregames)
 
