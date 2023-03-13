@@ -14,8 +14,7 @@ module.exports = {
 
   exits: {
     succeed: {
-      statusCode: 200,
-      'Content-Type': 'text/csv'
+      statusCode: 200
     },
     fail: {
       statusCode: 500,
@@ -61,22 +60,42 @@ module.exports = {
     const postmatches = await Postmatch.find({where:{date: {">": new Date(new Date().getFullYear(), 0, 1).valueOf()}}})
     const robot_attributes = await RobotAttributes.find({where:{date: {">": new Date(new Date().getFullYear(), 0, 1).valueOf()}}})
 
-    
-  if (reqList.query.raw){
-    return exits.success(JSON.stringify(({preagmes, autons, teleops, postmatches, robot_attributes})))
-  }
+
+    const compiler = {
+      REQUIRE_AUTON: 'auton',
+      REQUIRE_TELEOP: 'teleop',
+      REQUIRE_POSTGAME: 'postgame',
+      REQUIRE_ROBOT_ATTRIBUTES: 'robot',
+      REQUIRE_PREGAME: 'pregame',
+      compile: () => {
+        for(const pregame of pregames) {
+          const auton = autons.find(element => element.form_id === pregame.id)
+          const teleop = teleops.find(element => element.form_id === pregame.id)
+          const postgame = postmatches.find(element => element.form_id === pregame.id)
+          const robot_attribute = robot_attributes.find(element => element.form_id === pregame.id)
+          
+          
+        }
+      },
+      actions: [],
+      addAction: (callback, requirements) => {
+        let reqs = requirements;
+        if(!Array.isArray(requirements)) {
+          reqs = [requirements];
+        }
+        
+        compiler.actions.push({callback, reqs});
+      }
+    }
 
     console.log(pregames)
 
-
     for(let i = 0; i < pregames.length; i++) {
-      const pregame = pregame
+      const pregame = pregames[i];
       const auton = autons.find(element => element.form_id === pregames.id)
       const teleop = teleops.find(element => element.form_id === pregames.id)
       const postgame = postmatches.find(element => element.form_id === pregames.id)
       const robot_attribute = robot_attributes.find(element => element.form_id === pregames.id)
-
-
 
       blueprint.author.push(pregame.author)
       blueprint.carryables.push(robot_attribute.intake_containables)
