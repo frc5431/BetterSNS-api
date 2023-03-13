@@ -206,6 +206,12 @@ module.exports = {
 
     compiler.addAction((s, r) => {
       if(!s) {
+        blueprint["rank points"].push('unknown')
+        blueprint.response.push('unknown')
+        blueprint.defense.push('unknown')
+        blueprint["final score"].push('unknown')
+        blueprint.penalties.push('unknown')
+        blueprint.points.push('unknown')
         return;
       }
 
