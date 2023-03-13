@@ -226,6 +226,9 @@ module.exports = {
 
     compiler.addAction((s, r) => {
       if(!s) {
+        blueprint.carryables.push('not present')
+        blueprint.manipulator.push('not present')
+        blueprint["drive train"].push('not present')
         return;
       }
       blueprint.carryables.push(r.robot_attribute.intake_containables)
