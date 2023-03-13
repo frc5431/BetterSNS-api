@@ -96,16 +96,16 @@ module.exports = {
     robot_attributes.date = Date.now();
     sails.log(robot_attributes)
 
-    if(isNaN(postmatch.points)) {
+    if(postmatch.points == '') {
       postmatch.points = -1;
     }
-    if(isNaN(postmatch.penalties)) {
+    if(postmatch.penalties  == '') {
       postmatch.penalties = -1;
     }
-    if(isNaN(postmatch.final_score)) {
+    if(postmatch.final_score == '') {
       postmatch.final_score = -1;
     }
-    if(isNaN(postmatch.rank_points)) {
+    if(postmatch.rank_points == '') {
       postmatch.rank_points = -1;
     }
     
