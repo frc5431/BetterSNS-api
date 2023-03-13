@@ -225,7 +225,7 @@ module.exports = {
       blueprint.carryables.push(r.robot_attribute.intake_containables)
       blueprint.manipulator.push(r.robot_attribute.arm_design)
       blueprint["drive train"].push(r.robot_attribute.drive_style)
-    })
+    }, compiler.REQUIRE_ROBOT_ATTRIBUTES)
 
     compiler.compile();
 
