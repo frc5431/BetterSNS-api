@@ -95,6 +95,19 @@ module.exports = {
     let robot_attributes = formdata.robot_attributes;
     robot_attributes.date = Date.now();
     sails.log(robot_attributes)
+
+    if(isNaN(postmatch.points)) {
+      postmatch.points = -1;
+    }
+    if(isNaN(postmatch.penalties)) {
+      postmatch.penalties = -1;
+    }
+    if(isNaN(postmatch.final_score)) {
+      postmatch.final_score = -1;
+    }
+    if(isNaN(postmatch.rank_points)) {
+      postmatch.rank_points = -1;
+    }
     
 
     //create new Pregame

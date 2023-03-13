@@ -32,6 +32,33 @@ module.exports = {
     if (!inputs.postmatch.hasOwnProperty("Offense")) {
       return "no offense";
     }
+    /*
+        points: {
+      type: "number",
+    },
+    penalties: {
+      type: "number"
+    },
+    final_score: {
+      type: "number"
+    },
+    rank_points: {
+      type: "number"
+    },
+    */
+    if (!inputs.postmatch.hasOwnProperty("points")) {
+      return "no points";
+    }
+    if (!inputs.postmatch.hasOwnProperty("penalties")) {
+      return "no penalty points";
+    }
+    if (!inputs.postmatch.hasOwnProperty("final_score")) {
+      return "no final score";
+    }
+    if (!inputs.postmatch.hasOwnProperty("rank_points")) {
+      return "no rank points";
+    }
+    
     return true;
   },
 };
