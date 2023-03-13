@@ -237,7 +237,7 @@ module.exports = {
     }, compiler.REQUIRE_ROBOT_ATTRIBUTES)
 
     compiler.addAction((s, r) => {
-      blueprint.poorlyFilled = 'always';
+      blueprint.poorlyFilled.push('always');
     })
 
     compiler.compile();
