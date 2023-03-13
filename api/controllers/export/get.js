@@ -78,19 +78,19 @@ module.exports = {
           for(const action of compiler.actions) {
             let meets_req = true;
 
-            if((auton === null || auton === undefined) && action.requirements.includes(REQUIRE_AUTON)) {
+            if((auton === null || auton === undefined) && action.requirements.includes(compiler.REQUIRE_AUTON)) {
               meets_req = false;
             }
-            if((teleop === null || teleop === undefined) && action.requirements.includes(REQUIRE_TELEOP)) {
+            if((teleop === null || teleop === undefined) && action.requirements.includes(compiler.REQUIRE_TELEOP)) {
               meets_req = false;
             }
-            if((postgame === null || postgame === undefined) && action.requirements.includes(REQUIRE_POSTGAME)) {
+            if((postgame === null || postgame === undefined) && action.requirements.includes(compiler.REQUIRE_POSTGAME)) {
               meets_req = false;
             }
-            if((robot_attribute === null || robot_attribute === undefined) && action.requirements.includes(REQUIRE_ROBOT_ATTRIBUTES)) {
+            if((robot_attribute === null || robot_attribute === undefined) && action.requirements.includes(compiler.REQUIRE_ROBOT_ATTRIBUTES)) {
               meets_req = false;
             }
-            if((pregame === null || pregame === undefined) && action.requirements.includes(REQUIRE_PREGAME)) {
+            if((pregame === null || pregame === undefined) && action.requirements.includes(compiler.REQUIRE_PREGAME)) {
               meets_req = false;
             }
 
