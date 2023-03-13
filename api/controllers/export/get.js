@@ -91,7 +91,7 @@ module.exports = {
               meets_req = false;
             }
 
-            console.log(meets_req);
+            console.log({auton: auton, teleop: teleop, postgame: postgame, robot_attribute: robot_attribute});
 
             action.callback(meets_req, {auton: auton, teleop: teleop, postgame: postgame, robot_attribute: robot_attribute});
           }
