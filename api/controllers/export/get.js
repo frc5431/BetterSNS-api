@@ -109,48 +109,57 @@ module.exports = {
     console.log(pregames)
 
     compiler.addAction((s, r) => {
-      if(s) {
-        blueprint["charged (a)"].push(r.auton.extra_goal_progress)
-        blueprint["left community"].push(r.auton.left_community || false)
-        blueprint.moved.push(r.auton.moved)
-
-        let cones = 0;
-        let cubes = 0;
-
-        for(let j = 0; j < r.auton.markers.length; j++) {
-          if(r.auton.markers[j].type == "cone" && r.auton.markers[j].positive == true) {
-            cones++;
-          }
-          if(r.auton.markers[j].types == "cube" && r.auton.markers[j].positive == true){
-            cubes++
-          }
-        }
-
-        blueprint["cones (a)"].push(cones);
-        blueprint["cubes (a)"].push(cubes);
+      if(!s) {
+        return;
       }
+
+      blueprint["charged (a)"].push(r.auton.extra_goal_progress)
+      blueprint["left community"].push(r.auton.left_community || false)
+      blueprint.moved.push(r.auton.moved)
+
+      let cones = 0;
+      let cubes = 0;
+
+      for(let j = 0; j < r.auton.markers.length; j++) {
+        if(r.auton.markers[j].type == "cone" && r.auton.markers[j].positive == true) {
+          cones++;
+        }
+        if(r.auton.markers[j].types == "cube" && r.auton.markers[j].positive == true){
+          cubes++
+        }
+      }
+
+      blueprint["cones (a)"].push(cones);
+      blueprint["cubes (a)"].push(cubes);
     }, compiler.REQUIRE_AUTON)
 
     compiler.addAction((s, r) => {
-      if(s) {
-        blueprint["charged (t)"].push(r.teleop.extra_goal_progress)
-
-        cubes = 0
-        cones = 0
-        for(let j = 0; j < teleop.markers.length; j++) {
-          if(teleop.markers[j].type == "cone" && teleop.markers[j].positive == true) {
-            cones++;
-          }
-          if(teleop.markers[j].types == "cube" && teleop.markers[j].positive == true){
-            cubes++
-          }
-        }
-        blueprint["cones (t)"].push(cones)
-        blueprint["cubes (t)"].push(cubes)
+      if(!s) {
+        return;
       }
+
+      blueprint["charged (t)"].push(r.teleop.extra_goal_progress)
+
+      cubes = 0
+      cones = 0
+      for(let j = 0; j < r.teleop.markers.length; j++) {
+        if(r.teleop.markers[j].type == "cone" && r.teleop.markers[j].positive == true) {
+          cones++;
+        }
+        if(r.teleop.markers[j].types == "cube" && r.teleop.markers[j].positive == true){
+          cubes++
+        }
+      }
+      blueprint["cones (t)"].push(cones)
+      blueprint["cubes (t)"].push(cubes)
     }, compiler.REQUIRE_TELEOP)
 
     compiler.addAction((s, r) => {
+      if(!s) {
+        return;
+      }
+
+
       blueprint.coop.push(r.teleop.attempted_collaboration || r.auton.attempted_collaboration)
       blueprint.docking.push((r.teleop.extra_goal_progress || r.auton.extra_goal_progress) >= 1 ? 'yes' : 'no')
 
@@ -165,50 +174,52 @@ module.exports = {
 
       blueprint["tried activation"].push(activationBonus >= 1)
       blueprint["activation bonus"].push(activationBonus >= 26)
-      blueprint["tried community"].push(teleop.attempted_collaboration || r.auton.attempted_collaboration)
-
+      blueprint["tried community"].push(r.teleop.attempted_collaboration || r.auton.attempted_collaboration)
     }, [compiler.REQUIRE_AUTON, compiler.REQUIRE_TELEOP])
 
     compiler.addAction((s, r) => {
-      if(s) {
-        blueprint.author.push(r.pregame.author)
-        blueprint["match number"].push(r.pregame.match)
-        blueprint.preload.push(r.pregame.preload)
-        blueprint.startingPos.push(r.pregame.startingPos)
-        blueprint["team number"].push(r.pregame.teamid)
-        blueprint.timestamp.push(r.pregame.date)
-
-        if(cachedRounds.hasOwnProperty(pregame.match)) {
-          sails.helpers.rounds.getAllOfRoundNumber.with({
-            round_number: pregame.match,
-            date: pregame.date
-          }).then((res) => {
-            cachedRounds[pregame.match] = res;
-          })
-        }
+      if(!s) {
+        return;
       }
 
+      blueprint.author.push(r.pregame.author)
+      blueprint["match number"].push(r.pregame.match)
+      blueprint.preload.push(r.pregame.preload)
+      blueprint.startingPos.push(r.pregame.startingPos)
+      blueprint["team number"].push(r.pregame.teamid)
+      blueprint.timestamp.push(r.pregame.date)
 
-
-      
+      if(cachedRounds.hasOwnProperty(pregame.match)) {
+        sails.helpers.rounds.getAllOfRoundNumber.with({
+          round_number: pregame.match,
+          date: pregame.date
+        }).then((res) => {
+          cachedRounds[pregame.match] = res;
+        })
+      }
     }, compiler.REQUIRE_PREGAME)
 
     compiler.addAction((s, r) => {
-      if(s) {
-        blueprint["rank points"].push(r.postgame.rank_points + "/5")
-        blueprint.response.push(r.postgame.Offense + "/5")
-        blueprint.defense.push(r.postgame.Defense)
-        blueprint["final score"].push(r.postgame.final_score)
-        blueprint.penalties.push(r.postgame.penalties)
-        blueprint.points.push(r.postgame.points)
+      if(!s) {
+        return;
       }
-     
+
+      blueprint["rank points"].push(r.postgame.rank_points + "/5")
+      blueprint.response.push(r.postgame.Offense + "/5")
+      blueprint.defense.push(r.postgame.Defense)
+      blueprint["final score"].push(r.postgame.final_score)
+      blueprint.penalties.push(r.postgame.penalties)
+      blueprint.points.push(r.postgame.points)
+
     }, compiler.REQUIRE_POSTGAME)
 
     compiler.addAction((s, r) => {
-      blueprint.carryables.push(robot_attribute.intake_containables)
-      blueprint.manipulator.push(robot_attribute.arm_design)
-      blueprint["drive train"].push(robot_attribute.drive_style)
+      if(!s) {
+        return;
+      }
+      blueprint.carryables.push(r.robot_attribute.intake_containables)
+      blueprint.manipulator.push(r.robot_attribute.arm_design)
+      blueprint["drive train"].push(r.robot_attribute.drive_style)
     })
 
     compiler.compile();
