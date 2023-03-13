@@ -78,21 +78,23 @@ module.exports = {
           for(const action of compiler.actions) {
             let meets_req = true;
 
-            if(auton === null && action.requirements.includes(REQUIRE_AUTON)) {
+            if((auton === null || auton === undefined) && action.requirements.includes(REQUIRE_AUTON)) {
               meets_req = false;
             }
-            if(teleop === null && action.requirements.includes(REQUIRE_TELEOP)) {
+            if((teleop === null || teleop === undefined) && action.requirements.includes(REQUIRE_TELEOP)) {
               meets_req = false;
             }
-            if(postgame === null && action.requirements.includes(REQUIRE_POSTGAME)) {
+            if((postgame === null || postgame === undefined) && action.requirements.includes(REQUIRE_POSTGAME)) {
               meets_req = false;
             }
-            if(robot_attribute === null && action.requirements.includes(REQUIRE_ROBOT_ATTRIBUTES)) {
+            if((robot_attribute === null || robot_attribute === undefined) && action.requirements.includes(REQUIRE_ROBOT_ATTRIBUTES)) {
               meets_req = false;
             }
-            if(pregame === null && action.requirements.includes(REQUIRE_PREGAME)) {
+            if((pregame === null || pregame === undefined) && action.requirements.includes(REQUIRE_PREGAME)) {
               meets_req = false;
             }
+
+            console.log(action.requirements)
 
             action.callback(meets_req, {pregame: pregame, auton: auton, teleop: teleop, postgame: postgame, robot_attribute: robot_attribute});
           }
