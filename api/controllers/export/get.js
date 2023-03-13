@@ -165,12 +165,12 @@ module.exports = {
 
       let activationBonus = 0;
       
-      for(const cRound in cachedRounds[pregame.match]) {
-        let ag = cRound.auton.extra_goal_progress;
-        let tg = cRound.teleop.extra_goal_progress;
-        activationBonus += ag == 1 ? 8 : ag == 2 ? 12 : 0
-        activationBonus += tg == 1 ? 6 : tg == 2 ? 10 : 0
-      }
+      // for(const cRound in cachedRounds[pregame.match]) {
+      //   let ag = cRound.auton.extra_goal_progress;
+      //   let tg = cRound.teleop.extra_goal_progress;
+      //   activationBonus += ag == 1 ? 8 : ag == 2 ? 12 : 0
+      //   activationBonus += tg == 1 ? 6 : tg == 2 ? 10 : 0
+      // }
 
       blueprint["tried activation"].push(activationBonus >= 1)
       blueprint["activation bonus"].push(activationBonus >= 26)
@@ -189,14 +189,14 @@ module.exports = {
       blueprint["team number"].push(r.pregame.teamid)
       blueprint.timestamp.push(r.pregame.date)
 
-      if(cachedRounds.hasOwnProperty(pregame.match)) {
-        sails.helpers.rounds.getAllOfRoundNumber.with({
-          round_number: pregame.match,
-          date: pregame.date
-        }).then((res) => {
-          cachedRounds[pregame.match] = res;
-        })
-      }
+      // if(cachedRounds.hasOwnProperty(pregame.match)) {
+      //   sails.helpers.rounds.getAllOfRoundNumber.with({
+      //     round_number: pregame.match,
+      //     date: pregame.date
+      //   }).then((res) => {
+      //     cachedRounds[pregame.match] = res;
+      //   })
+      // }
     }, compiler.REQUIRE_PREGAME)
 
     compiler.addAction((s, r) => {
