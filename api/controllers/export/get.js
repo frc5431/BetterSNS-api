@@ -90,10 +90,11 @@ module.exports = {
             if(robot_attribute === null && action.requirements.includes(REQUIRE_ROBOT_ATTRIBUTES)) {
               meets_req = false;
             }
+            if(pregame === null && action.requirements.includes(REQUIRE_PREGAME)) {
+              meets_req = false;
+            }
 
-            console.log({auton: auton, teleop: teleop, postgame: postgame, robot_attribute: robot_attribute});
-
-            action.callback(meets_req, {auton: auton, teleop: teleop, postgame: postgame, robot_attribute: robot_attribute});
+            action.callback(meets_req, {pregame: pregame, auton: auton, teleop: teleop, postgame: postgame, robot_attribute: robot_attribute});
           }
         }
       },
