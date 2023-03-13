@@ -117,11 +117,11 @@ module.exports = {
         let cones = 0;
         let cubes = 0;
 
-        for(let j = 0; j < auton.markers.length; j++) {
-          if(auton.markers[j].type == "cone" && auton.markers[j].positive == true) {
+        for(let j = 0; j < r.auton.markers.length; j++) {
+          if(r.auton.markers[j].type == "cone" && r.auton.markers[j].positive == true) {
             cones++;
           }
-          if(auton.markers[j].types == "cube" && auton.markers[j].positive == true){
+          if(r.auton.markers[j].types == "cube" && r.auton.markers[j].positive == true){
             cubes++
           }
         }
