@@ -209,12 +209,12 @@ module.exports = {
         return;
       }
 
-      blueprint["rank points"].push(r.postgame.rank_points + "/5")
-      blueprint.response.push(r.postgame.Offense + "/5")
+      blueprint["rank points"].push(r.postgame.rank_points + " out of 5")
+      blueprint.response.push(r.postgame.Offense + " out of 5")
       blueprint.defense.push(r.postgame.Defense)
-      blueprint["final score"].push(r.postgame.final_score)
-      blueprint.penalties.push(r.postgame.penalties)
-      blueprint.points.push(r.postgame.points)
+      blueprint["final score"].push(r.postgame.final_score || 'not present')
+      blueprint.penalties.push(r.postgame.penalties || 'not present')
+      blueprint.points.push(r.postgame.points || 'not present')
 
     }, compiler.REQUIRE_POSTGAME)
 
@@ -304,6 +304,7 @@ module.exports = {
 
       // blueprint["tried community"].push(teleop.attempted_collaboration || auton.attempted_collaboration)
     }*/
+    
     let csv = "";
     for (const [key, value] of Object.entries(blueprint)) {
       csv += key + ",";
