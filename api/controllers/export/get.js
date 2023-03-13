@@ -236,6 +236,10 @@ module.exports = {
       blueprint["drive train"].push(r.robot_attribute.drive_style)
     }, compiler.REQUIRE_ROBOT_ATTRIBUTES)
 
+    compiler.addAction((s, r) => {
+      blueprint.poorlyFilled = 'always';
+    })
+
     compiler.compile();
 
     /*for(let i = 0; i < pregames.length; i++) {
