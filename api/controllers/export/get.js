@@ -190,7 +190,7 @@ module.exports = {
 
       blueprint.author.push(r.pregame.author)
       blueprint["match number"].push(r.pregame.match)
-      blueprint.preload.push(r.pregame.preload)
+      blueprint.preload.push(r.pregame.preload_type)
       blueprint.startingPos.push(r.pregame.startingPos)
       blueprint["team number"].push(r.pregame.teamid)
       blueprint.timestamp.push(r.pregame.date)
