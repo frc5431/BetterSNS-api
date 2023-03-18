@@ -23,7 +23,7 @@ module.exports = {
 
 
   fn: async function (inputs) {
-    return JSON.stringify({test: await Pregame.find()})
+    // return JSON.stringify({test: await Pregame.find()}, null, ' ')
     const blueprint = {
       timestamp: [],
       author: [],
