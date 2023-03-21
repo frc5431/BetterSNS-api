@@ -25,19 +25,31 @@ module.exports = {
   fn: async function (inputs) {
     // return JSON.stringify({test: await Pregame.find()}, null, ' ')
     const blueprint = {
+      "team number": [],
       timestamp: [],
       author: [],
       "match number": [],
       moved: [],
-      "cones (a)": [],
-      "cubes (a)": [],
-      "cubes (t)": [],
-      "cones (t)": [],
+      "cones Total (a)": [],
+      "cones High (a)": [],
+      "cones Mid (a)": [],
+      "cones Hybrid (a)": [],
+      "cubes Total (a)": [],
+      "cubes High (a)": [],
+      "cubes Mid (a)": [],
+      "cubes Hyrbid (a)": [],
+      "cubes Total (t)": [],
+      "cubes High (t)": [],
+      "cubes Mid (t)": [],
+      "cubes Hybrid (t)": [],
+      "cones Total (t)": [],
+      "cones High (t)": [],
+      "cones Mid (t)": [],
+      "cones Hybrid (t)": [],
       "points": [],
       "penalties": [],
       "rank points": [],
       "final score": [],
-      "team number": [],
       "left community": [],
       "preload": [],
       "charged (a)": [],
@@ -135,8 +147,8 @@ module.exports = {
         }
       }
 
-      blueprint["cones (a)"].push(cones);
-      blueprint["cubes (a)"].push(cubes);
+      blueprint["cones Total (a)"].push(cones);
+      blueprint["cubes Total (a)"].push(cubes);
     }, compiler.REQUIRE_AUTON)
 
     compiler.addAction((s, r) => {
@@ -145,19 +157,27 @@ module.exports = {
       }
 
       blueprint["charged (t)"].push(r.teleop.extra_goal_progress)
+      let poskey = ['mid', 'top', 'hybrid']
+      cubes = {top: 0, mid: 0, hybrid: 0}
+      cones = {top: 0, mid: 0, hybrid: 0}
 
-      cubes = 0
-      cones = 0
-      for(let j = 0; j < r.teleop.markers.length; j++) {
-        if(r.teleop.markers[j].type == "cone" && r.teleop.markers[j].positive == true) {
-          cones++;
+      for(let marker of r.teleop.markers) {
+        if(marker.type == "cone" && marker.positive === true) {
+          cubes[poskey[marker.y]]++;
         }
-        if(r.teleop.markers[j].types == "cube" && r.teleop.markers[j].positive == true){
-          cubes++
+        else {
+          cones[poskey[marker.y]]++;
         }
       }
-      blueprint["cones (t)"].push(cones)
-      blueprint["cubes (t)"].push(cubes)
+      blueprint["cones Total (t)"].push(cones.top + cones.mid + cones.hybrid)
+      blueprint["cones Top (t)"].push(cones.top)
+      blueprint["cones Mid (t)"].push(cones.mid)
+      blueprint["cones Hybrid (t)"].push(cones.hybrid)
+      
+      blueprint["cubes Total (t)"].push(cones.top + cones.mid + cones.hybrid)
+      blueprint["cubes Top (t)"].push(cones.top)
+      blueprint["cubes Mid (t)"].push(cones.mid)
+      blueprint["cubes Hybrid (t)"].push(cones.hybrid)
     }, compiler.REQUIRE_TELEOP)
 
     compiler.addAction((s, r) => {
@@ -193,7 +213,10 @@ module.exports = {
       blueprint.preload.push(r.pregame.preload_type)
       blueprint.startingPos.push(r.pregame.startingPos)
       blueprint["team number"].push(r.pregame.teamid)
-      blueprint.timestamp.push(r.pregame.date)
+
+      // TODO: Make it so that this becomes which comp this was at instead of date
+      let date = new Date(r.pregame.date);
+      blueprint.timestamp.push(`${date.getMonth()}/${date.getDay()}/${date.getFullYear()}`)
 
       // if(cachedRounds.hasOwnProperty(pregame.match)) {
       //   sails.helpers.rounds.getAllOfRoundNumber.with({
