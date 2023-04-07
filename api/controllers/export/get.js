@@ -248,22 +248,27 @@ module.exports = {
           break;
         }
       }
+      if(match !== null) {
+        const alliance = []
+        alliance.push(...match.alliances.red.team_keys)
+        alliance.push(...match.alliances.blue.team_keys)
+
+        if(!alliance.includes("frc" + r.pregame.teamid)) {
+          //All good
+          blueprint["team number"].push(r.pregame.teamid)
+        }else {
+          //Bad Data
+          blueprint["team number"].push(r.pregame.teamid + " &TBA_DISAGREES&")
+        }
+      }else {
+        blueprint["team number"].push(r.pregame.teamid)
+      }
       
-      const alliance = []
-      alliance.push(...match.alliances.red.team_keys)
-      alliance.push(...match.alliances.blue.team_keys)
 
       
 
       blueprint.preload.push(r.pregame.preload_type)
       blueprint.startingPos.push(r.pregame.startingPos)
-      if(!alliance.includes("frc" + r.pregame.teamid)) {
-        //All good
-        blueprint["team number"].push(r.pregame.teamid)
-      }else {
-        //Bad Data
-        blueprint["team number"].push(r.pregame.teamid + " &TBA_DISAGREES&")
-      }
 
       // TODO: Make it so that this becomes which comp this was at instead of date
       let date = new Date(r.pregame.date);
