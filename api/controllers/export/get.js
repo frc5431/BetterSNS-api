@@ -254,7 +254,7 @@ module.exports = {
         alliance.push(...match.alliances.red.team_keys)
         alliance.push(...match.alliances.blue.team_keys)
 
-        if(!alliance.includes("frc" + r.pregame.teamid)) {
+        if(alliance.includes("frc" + r.pregame.teamid)) {
           //All good
           blueprint["team number"].push(r.pregame.teamid)
         }else {
