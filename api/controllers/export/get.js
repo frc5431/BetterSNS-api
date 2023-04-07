@@ -245,6 +245,7 @@ module.exports = {
         const tempMatch = tba_json[i];
         if (tempMatch.match_number === r.pregame.match) {
           match = tempMatch;
+          console.log(found)
           break;
         }
       }
@@ -261,6 +262,7 @@ module.exports = {
           blueprint["team number"].push(r.pregame.teamid + " &TBA_DISAGREES&")
         }
       }else {
+        console.log('null')
         blueprint["team number"].push(r.pregame.teamid)
       }
       
@@ -404,7 +406,7 @@ module.exports = {
       csv += key + ",";
     }
     csv += "\n"
-    console.log(blueprint)
+    // console.log(blueprint)
     for(let form = 0; form < blueprint.timestamp.length; form++) {
       for (const [key, value] of Object.entries(blueprint)) {
         csv += value[form] + ","
