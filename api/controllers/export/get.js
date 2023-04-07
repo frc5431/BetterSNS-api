@@ -72,6 +72,7 @@ module.exports = {
       "startingPos": [],
       "notes": [],
       "poorlyFilled": [],
+      "tbaScore": [],
     }
 
     const pregames = await Pregame.find({where:{date: {">": new Date(new Date().getFullYear(), 0, 1).valueOf()}}})
@@ -341,8 +342,10 @@ module.exports = {
             console.log(`${score} was the score from tba, but we reported: ${r.postgame.points}`)
             blueprint.passed_tba_check.push(false);
           }
+          blueprint.tbaScore.push(score)
           blueprint.passed_tba_check.push(true);
         }else {
+          blueprint.tbaScore.push('lol')
           blueprint.passed_tba_check.push(true);
         }
       }
