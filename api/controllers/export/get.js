@@ -245,7 +245,7 @@ module.exports = {
         const tempMatch = tba_json[i];
         if (tempMatch.match_number === r.pregame.match) {
           match = tempMatch;
-          console.log(found)
+          console.log('found')
           break;
         }
       }
