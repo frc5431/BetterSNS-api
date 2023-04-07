@@ -35,6 +35,11 @@ module.exports = {
     if(pregame_validate !== true) {
       return exits.fail({message: "Prematch was unable to validate " + pregame_validate});
     }
+    if(formdata.prematch.client_uuid) {
+      if(await Pregame.count({client_uuid: formdata.prematch.client_uuid}) != 0) {
+        return exits.fail({message: 'UUID not unique, this may have been uploaded before.'});
+      }
+    }
 
     let prematch = formdata.prematch;
     prematch.date = Date.now();

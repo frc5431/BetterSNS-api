@@ -47,6 +47,10 @@ module.exports = {
     },
     startingPos: {
       type: 'string'
+    },
+    client_uuid: {
+      type: 'string',
+      allowNull: true
     }
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗

@@ -170,12 +170,12 @@ module.exports = {
         }
       }
       blueprint["cones Total (t)"].push(cones.top + cones.mid + cones.hybrid)
-      blueprint["cones Top (t)"].push(cones.top)
+      blueprint["cones High (t)"].push(cones.top)
       blueprint["cones Mid (t)"].push(cones.mid)
       blueprint["cones Hybrid (t)"].push(cones.hybrid)
       
       blueprint["cubes Total (t)"].push(cones.top + cones.mid + cones.hybrid)
-      blueprint["cubes Top (t)"].push(cones.top)
+      blueprint["cubes High (t)"].push(cones.top)
       blueprint["cubes Mid (t)"].push(cones.mid)
       blueprint["cubes Hybrid (t)"].push(cones.hybrid)
     }, compiler.REQUIRE_TELEOP)
