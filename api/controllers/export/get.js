@@ -65,6 +65,7 @@ module.exports = {
       "tried activation": [],
       "activation bonus": [],
       "startingPos": [],
+      "notes": [],
       "poorlyFilled": [],
     }
 
@@ -251,6 +252,7 @@ module.exports = {
         blueprint["final score"].push('unknown')
         blueprint.penalties.push('unknown')
         blueprint.points.push('unknown')
+        blueprint.notes.push('')
         return;
       }
 
@@ -260,7 +262,7 @@ module.exports = {
       blueprint["final score"].push(r.postgame.final_score || 'not present')
       blueprint.penalties.push(r.postgame.penalties || 'not present')
       blueprint.points.push(r.postgame.points || 'not present')
-
+      blueprint.notes.push(r.postgame.Notes || '')
     }, compiler.REQUIRE_POSTGAME)
 
     compiler.addAction((s, r) => {
