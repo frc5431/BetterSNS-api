@@ -123,7 +123,7 @@ module.exports = {
               meets_req = false;
             }
 
-            console.log(action.requirements)
+            // console.log(action.requirements)
 
             action.callback(meets_req, {pregame: pregame, auton: auton, teleop: teleop, postgame: postgame, robot_attribute: robot_attribute});
             compiler.cur_idx += 1;
@@ -141,7 +141,7 @@ module.exports = {
       }
     }
 
-    console.log(pregames)
+    // console.log(pregames)
 
     compiler.addAction((s, r) => {
       if(!s) {
@@ -330,10 +330,8 @@ module.exports = {
       if(s) {
         const match = compiler.global_compile_vars.match
         if(blueprint.passed_tba_check.length - 1 === compiler.cur_idx) {
+          blueprint.tbaScore.push('passed')
           return;
-        }else {
-          blueprint.tbaScore.push('lol')
-          blueprint.passed_tba_check.push(true);
         }
         if(match) {
           if(!match.score_breakdown) {
