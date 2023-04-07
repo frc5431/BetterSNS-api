@@ -1,3 +1,5 @@
+const fetch = require('node-fetch');
+
 module.exports = {
 
 
@@ -79,7 +81,7 @@ module.exports = {
 
     let tba = await fetch('https://www.thebluealliance.com/api/v3/event/2023txcmp1/matches', {
       headers: {
-        'X-TBA-Auth-Key': '4636Bn6fKHqHpLwvPqmJDX6QLOHRkNQhSUEM4ciFnKYlnNMxm7dCraEKYvxnZm5Bs'
+        'X-TBA-Auth-Key': '4636Bn6fKHqHpLwvPqmJDX6QLOHRkNQhSUEM4ciFnKYlnNMxm7dCraEKYvxnZm5Bs' // Quick and dirty. NEVER STORE API KEY IN PLAINTEXT
       }
     })
 
@@ -235,20 +237,31 @@ module.exports = {
 
       blueprint.author.push(r.pregame.author)
       blueprint["match number"].push(r.pregame.match)
-      const match = tba_json[r.pregame.match - 1];
       //just in case
       // if(match.match_number !== r.pregame.match - 1)
+      let match = null;
+
+      for (let i = 0; i < tba_json.length; i++) {
+        const tempMatch = tba_json[i];
+        if (tempMatch.match_number === r.pregame.match) {
+          match = tempMatch;
+          break;
+        }
+      }
       
-      const alliance = [].push(...match.alliances.red)
-      alliance.push(...match.alliances.blue)
+      const alliance = []
+      alliance.push(...match.alliances.red.team_keys)
+      alliance.push(...match.alliances.blue.team_keys)
 
       
 
       blueprint.preload.push(r.pregame.preload_type)
       blueprint.startingPos.push(r.pregame.startingPos)
-      if(!alliance.includes(r.pregame.teamid)) {
+      if(!alliance.includes("frc" + r.pregame.teamid)) {
+        //All good
         blueprint["team number"].push(r.pregame.teamid)
       }else {
+        //Bad Data
         blueprint["team number"].push(r.pregame.teamid + " &TBA_DISAGREES&")
       }
 
