@@ -162,10 +162,14 @@ module.exports = {
       cones = {top: 0, mid: 0, hybrid: 0}
 
       for(let marker of r.teleop.markers) {
-        if(marker.type == "cone" && marker.positive === true) {
+        if(!marker.positive) {
+          continue;
+        }
+
+        if(marker.type == "cone") {
           cubes[poskey[marker.y]]++;
         }
-        else if(marker.positive === true) {
+        else if(marker.type == 'cube') {
           cones[poskey[marker.y]]++;
         }
       }
