@@ -331,7 +331,7 @@ module.exports = {
         if(blueprint.passed_tba_check.length - 1 === compiler.cur_idx) {
           return;
         }
-        if(match !== null || match !== undefined) {
+        if(match) {
           if(!match.score_breakdown) {
             blueprint.passed_tba_check.push(false);
             return;
