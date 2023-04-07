@@ -135,20 +135,31 @@ module.exports = {
       blueprint["left community"].push(r.auton.left_community || false)
       blueprint.moved.push(r.auton.moved)
 
-      let cones = 0;
-      let cubes = 0;
+      let poskey = ['mid', 'top', 'hybrid']
+      cubes = {top: 0, mid: 0, hybrid: 0}
+      cones = {top: 0, mid: 0, hybrid: 0}
 
-      for(let j = 0; j < r.auton.markers.length; j++) {
-        if(r.auton.markers[j].type == "cone" && r.auton.markers[j].positive == true) {
-          cones++;
+      for(let marker of r.auton.markers) {
+        if(!marker.positive) {
+          continue;
         }
-        if(r.auton.markers[j].types == "cube" && r.auton.markers[j].positive == true){
-          cubes++
+
+        if(marker.type == "cone") {
+          cubes[poskey[marker.y]]++;
+        }
+        else if(marker.type == 'cube') {
+          cones[poskey[marker.y]]++;
         }
       }
-
-      blueprint["cones Total (a)"].push(cones);
-      blueprint["cubes Total (a)"].push(cubes);
+      blueprint["cones Total (a)"].push(cones.top + cones.mid + cones.hybrid)
+      blueprint["cones High (a)"].push(cones.top)
+      blueprint["cones Mid (a)"].push(cones.mid)
+      blueprint["cones Hybrid (a)"].push(cones.hybrid)
+      
+      blueprint["cubes Total (a)"].push(cones.top + cones.mid + cones.hybrid)
+      blueprint["cubes High (a)"].push(cones.top)
+      blueprint["cubes Mid (a)"].push(cones.mid)
+      blueprint["cubes Hybrid (a)"].push(cones.hybrid)
     }, compiler.REQUIRE_AUTON)
 
     compiler.addAction((s, r) => {
