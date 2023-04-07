@@ -27,7 +27,7 @@ module.exports = {
   fn: async function (inputs) {
     // return JSON.stringify({test: await Pregame.find()}, null, ' ')
     const blueprint = {
-      "passed_tba_check": [],
+      // "passed_tba_check": [],
       "team number": [],
       timestamp: [],
       author: [],
@@ -72,7 +72,7 @@ module.exports = {
       "startingPos": [],
       "notes": [],
       "poorlyFilled": [],
-      "tbaScore": [],
+      // "tbaScore": [],
     }
 
     const pregames = await Pregame.find({where:{date: {">": new Date(new Date().getFullYear(), 0, 1).valueOf()}}})
@@ -266,7 +266,7 @@ module.exports = {
         }else {
           //Bad Data
           blueprint["team number"].push(r.pregame.teamid + " &TBA_DISAGREES&")
-          blueprint.passed_tba_check.push(false)
+          // blueprint.passed_tba_check.push(false)
         }
       }else {
         console.log('null')
@@ -326,33 +326,31 @@ module.exports = {
       blueprint["drive train"].push(r.robot_attribute.drive_style)
     }, compiler.REQUIRE_ROBOT_ATTRIBUTES)
 
-    compiler.addAction((s, r) => {
-      if(s) {
-        const match = compiler.global_compile_vars.match
-        if(blueprint.passed_tba_check.length - 1 === compiler.cur_idx) {
-          blueprint.tbaScore.push('passed')
-          return;
-        }
-        if(match) {
-          if(!match.score_breakdown) {
-            blueprint.passed_tba_check.push(false);
-            blueprint.tbaScore.push('notexist');
-            return;
-          }
-          const score = match.score_breakdown[r.pregame.alliance === true ? 'blue' : 'red'].totalPoints;
-          if(score !== r.postgame.points) {
-            console.log(`${score} was the score from tba, but we reported: ${r.postgame.points}`)
-            blueprint.tbaScore.push(score || 'noscore')
-            blueprint.passed_tba_check.push(false);
-          }else {
-            blueprint.passed_tba_check.push(true);
-          }
-        }else {
-          blueprint.tbaScore.push('lol')
-          blueprint.passed_tba_check.push(true);
-        }
-      }
-    }, [compiler.REQUIRE_PREGAME, compiler.REQUIRE_POSTGAME])
+    // compiler.addAction((s, r) => {
+    //   if(s) {
+    //     const match = compiler.global_compile_vars.match
+    //     if(blueprint.passed_tba_check.length - 1 === compiler.cur_idx) {
+    //       blueprint.tbaScore.push('passed')
+    //       return;
+    //     }
+    //     if(match) {
+    //       if(!match.score_breakdown) {
+    //         blueprint.passed_tba_check.push(false);
+    //         return;
+    //       }
+    //       const score = match.score_breakdown[r.pregame.alliance === true ? 'blue' : 'red'].totalPoints;
+    //       if(score !== r.postgame.points) {
+    //         console.log(`${score} was the score from tba, but we reported: ${r.postgame.points}`)
+    //         blueprint.passed_tba_check.push(false);
+    //       }else {
+    //         blueprint.passed_tba_check.push(true);
+    //       }
+    //     }else {
+    //       blueprint.tbaScore.push('lol')
+    //       blueprint.passed_tba_check.push(true);
+    //     }
+    //   }
+    // }, [compiler.REQUIRE_PREGAME, compiler.REQUIRE_POSTGAME])
 
     compiler.addAction((s, r) => {
       let poorlyFilled = false;
