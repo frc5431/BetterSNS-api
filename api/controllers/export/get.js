@@ -37,7 +37,7 @@ module.exports = {
       "cubes Total (a)": [],
       "cubes High (a)": [],
       "cubes Mid (a)": [],
-      "cubes Hyrbid (a)": [],
+      "cubes Hybrid (a)": [],
       "cubes Total (t)": [],
       "cubes High (t)": [],
       "cubes Mid (t)": [],
