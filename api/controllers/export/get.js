@@ -355,9 +355,9 @@ module.exports = {
     compiler.addAction((s, r) => {
       let poorlyFilled = false;
 
-      if(blueprint.passed_tba_check[compiler.cur_idx] === false) {
-        poorlyFilled = true;
-      }
+      // if(blueprint.passed_tba_check[compiler.cur_idx] === false) {
+      //   poorlyFilled = true;
+      // }
 
       blueprint.poorlyFilled.push(poorlyFilled ? 'yes' : 'no');
     })
