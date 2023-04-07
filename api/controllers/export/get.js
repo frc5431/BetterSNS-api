@@ -337,6 +337,7 @@ module.exports = {
             return;
           }
           const score = match.score_breakdown[r.pregame.alliance === true ? 'blue' : 'red'].totalPoints;
+          console.log(`${score} was the score from tba, but we reported: ${r.postgame.points}`)
           blueprint.passed_tba_check.push(score === r.postgame.points);
         }else {
           blueprint.passed_tba_check.push(true);
