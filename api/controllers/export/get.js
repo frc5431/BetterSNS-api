@@ -27,6 +27,7 @@ module.exports = {
   fn: async function (inputs) {
     // return JSON.stringify({test: await Pregame.find()}, null, ' ')
     const blueprint = {
+      "passed_tba_check": [],
       "team number": [],
       timestamp: [],
       author: [],
@@ -93,14 +94,16 @@ module.exports = {
       REQUIRE_POSTGAME: 'postgame',
       REQUIRE_ROBOT_ATTRIBUTES: 'robot',
       REQUIRE_PREGAME: 'pregame',
+      global_compile_vars: {},
+      cur_idx: 0,
       compile: () => {
         for(const pregame of pregames) {
           const auton = autons.find(element => element.form_id === pregame.id)
           const teleop = teleops.find(element => element.form_id === pregame.id)
           const postgame = postmatches.find(element => element.form_id === pregame.id)
           const robot_attribute = robot_attributes.find(element => element.form_id === pregame.id)
-          
           for(const action of compiler.actions) {
+            global_compile_vars = {};
             let meets_req = true;
 
             if((auton === null || auton === undefined) && action.requirements.includes(compiler.REQUIRE_AUTON)) {
@@ -122,6 +125,7 @@ module.exports = {
             console.log(action.requirements)
 
             action.callback(meets_req, {pregame: pregame, auton: auton, teleop: teleop, postgame: postgame, robot_attribute: robot_attribute});
+            compiler.cur_idx += 1;
           }
         }
       },
@@ -253,6 +257,7 @@ module.exports = {
         const alliance = []
         alliance.push(...match.alliances.red.team_keys)
         alliance.push(...match.alliances.blue.team_keys)
+        compiler.global_compile_vars.match = match
 
         if(alliance.includes("frc" + r.pregame.teamid)) {
           //All good
@@ -260,6 +265,7 @@ module.exports = {
         }else {
           //Bad Data
           blueprint["team number"].push(r.pregame.teamid + " &TBA_DISAGREES&")
+          blueprint.passed_tba_check.push(false)
         }
       }else {
         console.log('null')
@@ -320,7 +326,28 @@ module.exports = {
     }, compiler.REQUIRE_ROBOT_ATTRIBUTES)
 
     compiler.addAction((s, r) => {
-      blueprint.poorlyFilled.push('always');
+      if(s) {
+        const match = compiler.global_compile_vars.match
+        if(blueprint.passed_tba_check.length - 1 === compiler.cur_idx) {
+          return;
+        }
+        if(match) {
+          const score = match.score_breakdown[r.pregame.alliance === true ? 'blue' : 'red'].totalPoints;
+          blueprint.passed_tba_check.push(score === r.postgame.points);
+        }else {
+          blueprint.passed_tba_check.push(true);
+        }
+      }
+    }, [compiler.REQUIRE_PREGAME, compiler.REQUIRE_POSTGAME])
+
+    compiler.addAction((s, r) => {
+      let poorlyFilled = false;
+
+      if(blueprint.passed_tba_check[compiler.cur_idx] === false) {
+        poorlyFilled = true;
+      }
+
+      blueprint.poorlyFilled.push(poorlyFilled ? 'yes' : 'no');
     })
 
     compiler.compile();
