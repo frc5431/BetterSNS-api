@@ -165,7 +165,7 @@ module.exports = {
         if(marker.type == "cone" && marker.positive === true) {
           cubes[poskey[marker.y]]++;
         }
-        else {
+        else if(marker.positive === true) {
           cones[poskey[marker.y]]++;
         }
       }
@@ -216,7 +216,7 @@ module.exports = {
 
       // TODO: Make it so that this becomes which comp this was at instead of date
       let date = new Date(r.pregame.date);
-      blueprint.timestamp.push(`${date.getMonth()}/${date.getDay()}/${date.getFullYear()}`)
+      blueprint.timestamp.push(`${date.getMonth() + 1}/${date.getDay()}/${date.getFullYear()}`)
 
       // if(cachedRounds.hasOwnProperty(pregame.match)) {
       //   sails.helpers.rounds.getAllOfRoundNumber.with({
