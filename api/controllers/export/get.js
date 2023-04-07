@@ -216,7 +216,7 @@ module.exports = {
 
       // TODO: Make it so that this becomes which comp this was at instead of date
       let date = new Date(r.pregame.date);
-      blueprint.timestamp.push(`${date.getMonth() + 1}/${date.getDay()}/${date.getFullYear()}`)
+      blueprint.timestamp.push(`${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`)
 
       // if(cachedRounds.hasOwnProperty(pregame.match)) {
       //   sails.helpers.rounds.getAllOfRoundNumber.with({
