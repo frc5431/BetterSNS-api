@@ -331,6 +331,9 @@ module.exports = {
         const match = compiler.global_compile_vars.match
         if(blueprint.passed_tba_check.length - 1 === compiler.cur_idx) {
           return;
+        }else {
+          blueprint.tbaScore.push('lol')
+          blueprint.passed_tba_check.push(true);
         }
         if(match) {
           if(!match.score_breakdown) {
