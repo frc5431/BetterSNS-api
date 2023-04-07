@@ -331,7 +331,7 @@ module.exports = {
         if(blueprint.passed_tba_check.length - 1 === compiler.cur_idx) {
           return;
         }
-        if(match) {
+        if(match !== null && match !== undefined) {
           const score = match.score_breakdown[r.pregame.alliance === true ? 'blue' : 'red'].totalPoints;
           blueprint.passed_tba_check.push(score === r.postgame.points);
         }else {
