@@ -46,6 +46,8 @@ module.exports = {
       "cones High (t)": [],
       "cones Mid (t)": [],
       "cones Hybrid (t)": [],
+      // "Average Cone Location": [],
+      // "Average Cube Location": [],
       "points": [],
       "penalties": [],
       "rank points": [],
@@ -62,8 +64,8 @@ module.exports = {
       "manipulator": [],
       "docking": [],
       "tried community": [],
-      "tried activation": [],
-      "activation bonus": [],
+      // "tried activation": [],
+      // "activation bonus": [],
       "startingPos": [],
       "notes": [],
       "poorlyFilled": [],
@@ -75,6 +77,13 @@ module.exports = {
     const postmatches = await Postmatch.find({where:{date: {">": new Date(new Date().getFullYear(), 0, 1).valueOf()}}})
     const robot_attributes = await RobotAttributes.find({where:{date: {">": new Date(new Date().getFullYear(), 0, 1).valueOf()}}})
 
+    let tba = await fetch('https://www.thebluealliance.com/api/v3/event/2023txcmp1/matches', {
+      headers: {
+        'X-TBA-Auth-Key': '4636Bn6fKHqHpLwvPqmJDX6QLOHRkNQhSUEM4ciFnKYlnNMxm7dCraEKYvxnZm5Bs'
+      }
+    })
+
+    const tba_json = await tba.json();
 
     const compiler = {
       REQUIRE_AUTON: 'auton',
@@ -214,8 +223,8 @@ module.exports = {
       //   activationBonus += tg == 1 ? 6 : tg == 2 ? 10 : 0
       // }
 
-      blueprint["tried activation"].push(activationBonus >= 1)
-      blueprint["activation bonus"].push(activationBonus >= 26)
+      // blueprint["tried activation"].push(activationBonus >= 1)
+      // blueprint["activation bonus"].push(activationBonus >= 26)
       blueprint["tried community"].push(r.teleop.attempted_collaboration || r.auton.attempted_collaboration)
     }, [compiler.REQUIRE_AUTON, compiler.REQUIRE_TELEOP])
 
@@ -226,9 +235,22 @@ module.exports = {
 
       blueprint.author.push(r.pregame.author)
       blueprint["match number"].push(r.pregame.match)
+      const match = tba_json[r.pregame.match - 1];
+      //just in case
+      // if(match.match_number !== r.pregame.match - 1)
+      
+      const alliance = [].push(...match.alliances.red)
+      alliance.push(...match.alliances.blue)
+
+      
+
       blueprint.preload.push(r.pregame.preload_type)
       blueprint.startingPos.push(r.pregame.startingPos)
-      blueprint["team number"].push(r.pregame.teamid)
+      if(!alliance.includes(r.pregame.teamid)) {
+        blueprint["team number"].push(r.pregame.teamid)
+      }else {
+        blueprint["team number"].push(r.pregame.teamid + " &TBA_DISAGREES&")
+      }
 
       // TODO: Make it so that this becomes which comp this was at instead of date
       let date = new Date(r.pregame.date);
