@@ -454,6 +454,7 @@ module.exports = {
       csv += "\n"
     }
     csv = csv.substring(0, csv.length - 1)
+    console.log(blueprint.tbaScore)
     // All done.
     return csv;
 
