@@ -173,10 +173,10 @@ module.exports = {
       blueprint["cones Mid (a)"].push(cones.mid)
       blueprint["cones Hybrid (a)"].push(cones.hybrid)
       
-      blueprint["cubes Total (a)"].push(cones.top + cones.mid + cones.hybrid)
-      blueprint["cubes High (a)"].push(cones.top)
-      blueprint["cubes Mid (a)"].push(cones.mid)
-      blueprint["cubes Hybrid (a)"].push(cones.hybrid)
+      blueprint["cubes Total (a)"].push(cubes.top + cones.mid + cones.hybrid)
+      blueprint["cubes High (a)"].push(cubes.top)
+      blueprint["cubes Mid (a)"].push(cubes.mid)
+      blueprint["cubes Hybrid (a)"].push(cubes.hybrid)
     }, compiler.REQUIRE_AUTON)
 
     compiler.addAction((s, r) => {
@@ -206,10 +206,10 @@ module.exports = {
       blueprint["cones Mid (t)"].push(cones.mid)
       blueprint["cones Hybrid (t)"].push(cones.hybrid)
       
-      blueprint["cubes Total (t)"].push(cones.top + cones.mid + cones.hybrid)
-      blueprint["cubes High (t)"].push(cones.top)
-      blueprint["cubes Mid (t)"].push(cones.mid)
-      blueprint["cubes Hybrid (t)"].push(cones.hybrid)
+      blueprint["cubes Total (t)"].push(cubes.top + cubes.mid + cubes.hybrid)
+      blueprint["cubes High (t)"].push(cubes.top)
+      blueprint["cubes Mid (t)"].push(cubes.mid)
+      blueprint["cubes Hybrid (t)"].push(cubes.hybrid)
     }, compiler.REQUIRE_TELEOP)
 
     compiler.addAction((s, r) => {
