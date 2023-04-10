@@ -19,4 +19,4 @@ jobs:
       - name: Update Server
         run: |
           set -x
-          sshpass -p "${{ secrets.SSH_PASSWORD }}" ssh administrator@$nebulouscereal.com "cd /home/administrator/BetterSNS-api/ && git pull && ./update_script.sh"
+          sshpass -p "${{ secrets.SSH_PASSWORD }}" ssh administrator@nebulouscereal.com "cd /home/administrator/BetterSNS-api/ && git pull && ./update_script.sh"
