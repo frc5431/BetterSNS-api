@@ -22,4 +22,4 @@ jobs:
           SERVER_IP: 'nebulouscereal.com'
         run: |
           set -x
-          sshpass -p ${{ secrets.SSH_PASSWORD }} ssh $SSH_USER@$SERVER_IP "cd /home/administrator/BetterSNS-api/ && git pull && ./update_script.sh"
+          sshpass -p "${{ secrets.SSH_PASSWORD }}" ssh $SSH_USER@$SERVER_IP "cd /home/administrator/BetterSNS-api/ && git pull && ./update_script.sh"
