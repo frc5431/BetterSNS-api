@@ -3,7 +3,7 @@ name: Update Server
 on:
   push:
     branches:
-      - main
+      - 2023
   workflow_dispatch:
 
 jobs:
