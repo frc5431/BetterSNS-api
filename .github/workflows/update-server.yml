@@ -18,7 +18,7 @@ jobs:
 
       - name: Update Server
         env:
-          SSH_USER: [administrator]
-          SERVER_IP: [nebulouscereal.com]
+          SSH_USER: 'administrator'
+          SERVER_IP: 'nebulouscereal.com'
         run: |
           sshpass -p ${{ secrets.SSH_PASSWORD }} ssh $SSH_USER@$SERVER_IP "cd /home/administrator/BetterSNS-api/ && git pull && ./update_script.sh"
