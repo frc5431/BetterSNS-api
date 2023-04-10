@@ -19,7 +19,6 @@ module.exports = {
 
   fn: async function (inputs) {
     const teamid = this.req.query.teamNumber;
-    const teamName = this.req.query.name;
     date = new Date(this.req.query.date).valueOf() || 0;
     const limit = this.req.query.limit || 1;
     const conditions = {
