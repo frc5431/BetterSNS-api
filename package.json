@@ -10,7 +10,7 @@
     "@sailshq/socket.io-redis": "^5.2.0",
     "csv": "^6.2.7",
     "grunt": "1.0.4",
-    "node-fetch": "^3.3.1",
+    "node-fetch": "^2.6.9",
     "sails": "^1.5.3",
     "sails-hook-grunt": "^5.0.0",
     "sails-hook-orm": "^4.0.0",

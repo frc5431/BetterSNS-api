@@ -24,6 +24,7 @@ module.exports.routes = {
   'POST /api/v1/form' : { action: 'form/post' },
   'GET /api/v1/form' : { action: 'form/get' },
   'GET /api/v1/export' : { action: 'export/get' },
+  'GET /api/v1/team/:id' : { action: 'team/get' },
   'POST /api/v1/feedback' : { action: 'feedback/post' },
 
 
