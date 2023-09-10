@@ -81,10 +81,10 @@ module.exports = {
     const postmatches = await Postmatch.find({where:{date: {">": new Date(new Date().getFullYear(), 0, 1).valueOf()}}})
     const robot_attributes = await RobotAttributes.find({where:{date: {">": new Date(new Date().getFullYear(), 0, 1).valueOf()}}})
 
-    let tba = await fetch('https://www.thebluealliance.com/api/v3/event/2023txcmp1/matches', {
+    let tba = await fetch('https://www.thebluealliance.com/api/v3/event/2023txtt/matches', {
       headers: {
-        'X-TBA-Auth-Key': '4636Bn6fKHqHpLwvPqmJDX6QLOHRkNQhSUEM4ciFnKYlnNMxm7dCraEKYvxnZm5Bs' // Quick and dirty. NEVER STORE API KEY IN PLAINTEXT
-      }
+        'X-TBA-Auth-Key': '4636Bn6fKHqHpLwvPqmJDX6QLOHRkNQhSUEM4ciFnKYlnNMxm7dCraEKYvxnZm5B' // Quick and dirty. NEVER STORE API KEY IN PLAINTEXT
+      } // guess who uploaded it to prod, lmao
     })
 
     const tba_json = await tba.json();
